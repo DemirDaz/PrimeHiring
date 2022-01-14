@@ -1,0 +1,92 @@
+<html>
+<head>
+<title>Prime Hiring</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<!--
+<link rel = "stylesheet" href = "https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+<script src = "https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js">
+</script>
+<script src = "https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js">
+</script> -->
+
+<link href="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <img src="logo.png" class="img-fluid" id="logo"/>
+  <div class="navig">
+    
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Manage</a>
+      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Hired</a>
+      <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Assigned</a>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"> <table id="table"
+      data-toggle="table"
+      data-url="http://localhost/PrimeHiring/getDevelopers.php"
+      data-formatter="imageFormatter"
+      data-height="400" data-show-columns="true"
+      class="table table-hover">
+        <thead>
+          <tr>
+              <th data-field="Name">Name</th>
+              <th data-field="Email">Email</th>
+              <th data-field="PhoneNum">PhoneNum</th>
+
+              <th data-field="Location">Location</th>
+
+              <th data-field="Picture" data-formatter="imageFormatter">Picture</th>
+              <th data-field="PricePerHour">PricePerHour</th>
+
+              <th data-field="Technology">Technology</th>
+              <th data-field="Description">Description</th>
+              <th data-field="YearsOfExp">YearsOfExp</th>
+              <th data-field="NativeLang">NativeLang</th>
+          </tr>
+      </thead>
+      </table></div>
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+  </div>
+</div>
+   
+
+     
+      <script src="https://code.jquery.com/jquery-3.3.1.js" ></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+      <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.6.0/holder.js"></script>
+<script>
+
+
+function imageFormatter(value, row) {
+      return '<img src="'+value+'" style="width:100px;height:100px"/>';
+    }
+   
+       /* columns: [
+             { "data": "Name" },
+             { "data": "Email" },
+             { "data": "PhoneNum" },
+             { "data":"Location" },
+             { "data": "Picture" },
+             { "data": "PricePerHour" },
+			       { "data": "Technology" },
+             { "data": "Description" },
+             { "data": "YearsOfExp" },
+             { "data": "NativeLang" },
+			 { "data": "LinkedIn" }
+        ] */
+   
+
+    // on click..post request to php..get developers and list them
+</script>
+</body>
+</html>
