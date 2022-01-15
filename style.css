@@ -56,7 +56,7 @@ table#table2 {
 }
 
 .nav-tabs{
-    margin-top:50px;
+    margin-top:40px;
     display: flex;
     -ms-flex-wrap: wrap;
     padding-left: 0;
@@ -125,7 +125,7 @@ td.abbreviation2:hover{
 .nav-link.active{
     color: rgb(255, 153, 0)!important;
     background-color: white !important;
-    box-shadow:0px 0px 15px 3px #dddddd;
+    box-shadow:0px 0px 16px 0px #dddddd;
     font-size:30px;
 }
 
