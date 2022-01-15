@@ -51,7 +51,7 @@ table#table2 {
     background-color: rgba(255, 255, 255, 0.719);
     width: 60%;
     height: 100%;
-    box-shadow:0px 0px 15px 3px #dddddd;
+    box-shadow:0px 0px 15px 3px #eeeeee;
     display:flex;
 }
 
@@ -107,11 +107,13 @@ td.abbreviation2:hover{
 
 .nav-link{
     margin-left:-30px;
+    font-size:16px;
     border-radius: 0px 25px 25px 0px !important;
     color: rgb(139, 139, 139)!important;
     text-align: right;
     width:100%;
     border: none !important;
+    transition: color 0.5s, font-size 0.5s;
 }
 
 
@@ -123,7 +125,7 @@ td.abbreviation2:hover{
 .nav-link.active{
     color: rgb(255, 153, 0)!important;
     background-color: white !important;
-    box-shadow:0px 0px 15px 3px #cccccc;
+    box-shadow:0px 0px 15px 3px #dddddd;
     font-size:30px;
 }
 
