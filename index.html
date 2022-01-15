@@ -31,12 +31,13 @@
         <button id="add" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
           <i class="fa fa-user-plus fa-lg" aria-hidden="true"></i> Add Developer
         </button>
+        
       </div>
 
 
       <!-- Add a developer modal-->
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Add new developer</h5>
@@ -62,10 +63,12 @@
       data-show-toggle="true"
       data-url="http://localhost/PrimeHiring/getDevelopers.php"
       data-height="400" data-show-columns="true"
+      data-show-refresh="true"
+      data-icons="icons"
       class="table table-hover table-borderless"> 
         <thead class="thead-dark">
           <tr>
-            <th data-formatter="operateFormatter" style="align-content: center;">Manage</th>
+            <th data-formatter="operateFormatter" data-events="operateEvents" style="align-content: center;">Manage</th>
             <th data-field="Name" >Name</th>
             <th data-field="Email">Email</th>
             <th data-field="PhoneNum">PhoneNum</th>
@@ -102,6 +105,7 @@
       data-show-refresh="true"
       data-url=""
       data-height="400" data-show-columns="true"
+      data-icons="icons"
       class="table table2 table-hover table-borderless">
       <thead class="thead-dark">
       <tr>
@@ -130,18 +134,24 @@
         <button id="hire" class="btn btn-dark" >
           <i class="fa fa-handshake-o fa-lg" aria-hidden="true"></i> Hire
         </button>
+        
+        
+       
       </div>
       </div>
     </div>
 
     <!-- ASSIGN -->
     <div class="tab-pane fade" id="nav-assigned" role="tabpanel" aria-labelledby="nav-assigned-tab">
+      
 
       <table id="table3"
       data-toggle="table"
       data-show-toggle="true"
+      data-show-refresh="true"
       data-url="http://localhost/PrimeHiring/getRecords.php"
       data-height="400" data-show-columns="true"
+      data-icons="icons"
       class="table table-hover table-borderless"> 
         <thead class="thead-dark">
           <tr>
@@ -169,11 +179,34 @@
 
 <script>
 
+window.icons = {
+    paginationSwitchDown: 'fa-caret-square-down',
+    paginationSwitchUp: 'fa-caret-square-up',
+    refresh: 'fa fa-refresh',
+    toggleOff: 'fa-toggle-off',
+    toggleOn: 'fa-toggle-on',
+    columns: 'fa-th-list',
+    fullscreen: 'fa-arrows-alt',
+    detailOpen: 'fa-plus',
+    detailClose: 'fa-minus'
+  };
+
+  
+
+var $table1 = $('#table1');
 var $table = $('#table2');
+var $table3 = $('#table3');
+var $remove = $('#hire');
+var $refresh = $('#refresh');
+
 $(document).ready(function() {
- 
   $(".table2").attr("data-url","http://localhost/PrimeHiring/getAvailable.php?start=%27"+ $('#startDate').val() +"%27");
   $table.bootstrapTable('refresh');
+  $refresh.click(function () {
+      $table.bootstrapTable('refresh');
+      $table1.bootstrapTable('refresh');
+      $table3.bootstrapTable('refresh');
+    })
 });
 
 
@@ -182,40 +215,54 @@ function getDate() {
   return $('#startDate').val();
 }
 
+
+window.operateEvents = {
+    'click .edit': function (e, value, row, index) {
+      alert('You click like action, row: ' + JSON.stringify(row))
+    },
+    'click .remove': function (e, value, row, index) {
+      //ajax request to delete in db
+      $.get( "http://localhost/PrimeHiring/deleteDeveloper.php?id="+row['id'] , function( data ) {
+        alert( "Deleted."+data );
+        }); 
+      $table1.bootstrapTable('remove', {
+        field: '$index',
+        values: [index]
+      })
+    }
+  }
+
  var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
-        $('#startDate').datepicker({
-            uiLibrary: 'bootstrap4',
-            iconsLibrary: 'fontawesome',
-            minDate: today,
-            format: 'yyyy-mm-dd',
-            maxDate: function () {
-                return $('#endDate').val();
-            },
-            change: function (e) {
-              $table.bootstrapTable('refresh', {
-               url: "http://localhost/PrimeHiring/getAvailable.php?start=%27"+ $('#startDate').val() +"%27"
-              });
-            }
-
+  $('#startDate').datepicker({
+      uiLibrary: 'bootstrap4',
+      iconsLibrary: 'fontawesome',
+      minDate: today,
+      format: 'yyyy-mm-dd',
+      maxDate: function () {
+          return $('#endDate').val();
+      },  // on click..post request to php..get developers and list them
+      change: function (e) {
+        $table.bootstrapTable('refresh', {
+          url: "http://localhost/PrimeHiring/getAvailable.php?start=%27"+ $('#startDate').val() +"%27"
         });
-        $('#endDate').datepicker({
-            uiLibrary: 'bootstrap4',
-            iconsLibrary: 'fontawesome',
-            format: 'yyyy-mm-dd',
-            minDate: function () {
-                return $('#startDate').val();
-            },
-            change: function (e) {
-              //$(".table2").attr("data-url","http://localhost/PrimeHiring/getAvailable.php?start=%27"+ $('#startDate').val() +"%27");
-              $table.bootstrapTable('refresh', {
-               url: "http://localhost/PrimeHiring/getAvailable.php?start=%27"+ $('#startDate').val() +"%27"
-              });
+      }
 
-              
-              //validate($(this).val());
-            
-             }
+  });
+  $('#endDate').datepicker({
+      uiLibrary: 'bootstrap4',
+      iconsLibrary: 'fontawesome',
+      format: 'yyyy-mm-dd',
+      minDate: function () {
+          return $('#startDate').val();
+      },  // on click..post request to php..get developers and list them
+      change: function (e) {
+        //$(".table2").attr("data-url","http://localhost/PrimeHiring/getAvailable.php?start=%27"+ $('#startDate').val() +"%27");
+        $table.bootstrapTable('refresh', {
+          url: "http://localhost/PrimeHiring/getAvailable.php?start=%27"+ $('#startDate').val() +"%27"
         });
+        //validate($(this).val());
+        }
+  });
 
 
 function validate(dateText){
@@ -242,7 +289,7 @@ return [
 ].join('')
 }
 
-    // on click..post request to php..get developers and list them
+   
 </script>
 </body>
 </html>
