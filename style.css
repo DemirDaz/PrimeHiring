@@ -34,6 +34,13 @@ body{
     background: rgb(255, 115, 0); 
   }
 
+table#table1 {
+    table-layout: auto;
+}
+
+table#table2 {
+    table-layout: auto;
+}
   
 #logo{
     margin:auto;
@@ -71,6 +78,29 @@ button#add{
     position: relative;
     bottom: -48px;
 }
+
+ .table td.abbreviation,th.abervation{
+    max-width: 200px;
+    white-space: nowrap; 
+    height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+   }
+
+
+   .table td.abbreviation:hover{
+    max-width:fit-content;
+    white-space:normal; 
+    overflow: visible;
+   }
+
+  
+
+    td.abbreviation2:hover{
+    max-width:300px;
+    white-space: pre-wrap; 
+    overflow: visible;
+   }
 
 
 
