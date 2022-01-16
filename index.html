@@ -37,23 +37,126 @@
 
       <!-- Add a developer modal-->
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Add new developer</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              ...
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Submit</button>
-            </div>
-          </div>
-        </div>
+      <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+      <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Add a new developer</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+      </div>
+      <div class="modal-body">
+      <!--#region createForm-->
+      <form class="row g-3 needs-validation" id="createForm" novalidate>
+      <div class="col-md-6">
+      <label for="Name" class="form-label">Full Name</label>
+      <input name="Name" type="text" class="form-control" id="Name" value="" required>
+      <div class="valid-feedback">
+      Looks good!
+      </div>
+      </div>
+      <div class="col-md-6">
+      <label for="Email" class="form-label">Email</label>
+      <input name="Email" type="email" class="form-control" id="Email" value="" required>
+      <div class="valid-feedback">
+      Looks good!
+      </div>
+      </div>
+      <div class="col-md-6">
+      <label for="PhoneNum" class="form-label">Phone Number</label>
+      <input name="PhoneNum" type="tel" class="form-control" id="PhoneNum" value="" required>
+      <div class="valid-feedback">
+      Looks good!
+      </div>
+      </div>
+      <div class="col-md-6">
+      <label for="Location" class="form-label">Location</label>
+      <div class="input-group has-validation">
+      <input name="Location" type="text" class="form-control" id="Location" aria-describedby="inputGroupPrepend" required>
+      <div class="invalid-feedback">
+        Please write a valid city name.
+      </div>
+      </div>
+      </div>
+      <div class="col-md-6">
+      <label for="Picture" class="form-label">Profile Picture</label>
+      <input name="Picture" type="url" class="form-control" id="Picture" required>
+      <div class="invalid-feedback">
+      Please provide picture's URL.
+      </div>
+      </div>
+      <div class="col-md-6">
+      <label for="PricePerHour" class="form-label">Price per hour($)</label>
+      <input name="PricePerHour" type="number" class="form-control" id="PricePerHour" required>
+      <div class="invalid-feedback">
+      Please provide valid price format(number).
+      </div>
+      </div>
+      <div class="col-md-6">
+      <label for="Technology" class="form-label">Technology</label>
+      <select name="Technology" class="form-control" id="Technology" required>
+      <option selected disabled value="">Choose...</option>
+      <option>Javascript</option>
+      <option>Java</option>
+      <option>.NET</option>
+      <option>Flutter</option>
+      <option>Python</option>
+      <option>PHP</option>
+      </select>
+      <div class="invalid-feedback">
+      Please select one of provided technologies.
+      </div>
+      </div>
+      <div class="col-md-6">
+      <label for="Description" class="form-label">Description</label>
+      <div class="input-group has-validation">
+      <input name="Description" type="text" class="form-control" id="Description" aria-describedby="inputGroupPrepend">
+      <div class="invalid-feedback">
+        Please write a description.
+      </div>
+      </div>
+      </div>
+      <div class="col-md-6">
+      <label for="YearsOfExp" class="form-label">Years of experience</label>
+      <input name="YearsOfExp" type="number" class="form-control" id="YearsOfExp" required>
+      <div class="invalid-feedback">
+      Please provide a number.
+      </div>
+      </div>
+      <div class="col-md-6">
+      <label for="NativeLang" class="form-label">Native Language</label>
+      <select name="NativeLang" class="form-control" id="NativeLang" required>
+      <option selected disabled value="">Choose...</option>
+      <option>English</option>
+      <option>Serbian</option>
+      <option>Bulgarian</option>
+      </select>
+      <div class="invalid-feedback">
+      Please select one of provided languages.
+      </div>
+      </div>
+      <div class="col-md-6">
+      <label for="LinkedIn" class="form-label">LinkedIn profile link</label>
+      <input name="LinkedIn" type="url" class="form-control" id="LinkedIn" >
+      <div class="invalid-feedback">
+      Please provide a valid URL.
+      </div>
+      </div>
+
+
+      <div class="col-md-6">
+      <button class="btn btn-primary" id="createBtn" type="submit" style="margin-top:14.5%;float:right;">Submit form</button>
+      </div>
+      </form>
+
+      <!-- endregion -->
+
+      </div>
+      <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+      </div>
+      </div>
       </div>
 
       <!-- MANAGE -->
@@ -66,35 +169,36 @@
       data-show-refresh="true"
       data-icons="icons"
       class="table table-hover table-borderless"> 
-        <thead class="thead-dark">
-          <tr>
-            <th data-formatter="operateFormatter" data-events="operateEvents" style="align-content: center;">Manage</th>
-            <th data-field="Name" >Name</th>
-            <th data-field="Email">Email</th>
-            <th data-field="PhoneNum">PhoneNum</th>
+      <thead class="thead-dark">
+      <tr>
+      <th data-formatter="operateFormatter" data-events="operateEvents" style="align-content: center;">Manage</th>
+      <th data-field="id"></th>
+      <th data-field="Name" >Name</th>
+      <th data-field="Email">Email</th>
+      <th data-field="PhoneNum">PhoneNum</th>
 
-            <th data-field="Location">Location</th>
+      <th data-field="Location">Location</th>
 
-            <th data-field="Picture" data-formatter="imageFormatter">Picture</th>
-            <th data-field="PricePerHour">PricePerHour</th>
+      <th data-field="Picture" data-formatter="imageFormatter">Picture</th>
+      <th data-field="PricePerHour">PricePerHour</th>
 
-            <th data-field="Technology">Technology</th>
-            <th data-field="Description" class="abbreviation">Description</th>
-            <th data-field="YearsOfExp">YearsOfExp</th>
-            <th data-field="NativeLang">NativeLang</th>
-          </tr>
+      <th data-field="Technology">Technology</th>
+      <th data-field="Description" class="abbreviation">Description</th>
+      <th data-field="YearsOfExp">YearsOfExp</th>
+      <th data-field="NativeLang">NativeLang</th>
+      </tr>
       </thead>
       </table>
       <!-- </div> -->
-    
-    </div>
 
-    <!-- HIRE 
+      </div>
+
+     <!-- HIRE 
       
-      -- do / show only devs that can be hired in a date range selected
+      -- done / show only devs that can be hired in a date range selected
 
-    --> 
-    <div class="tab-pane fade" id="nav-hire" role="tabpanel" aria-labelledby="nav-hire-tab">
+      --> 
+      <div class="tab-pane fade" id="nav-hire" role="tabpanel" aria-labelledby="nav-hire-tab">
            
       
       <table id="table2"
@@ -109,40 +213,38 @@
       class="table table-hover table2 table-borderless">
       <thead class="thead-dark">
       <tr>
-        <th data-field="state" data-checkbox="true"></th>
-        <th data-field="Name">Name</th>
-        <th data-field="Email">Email</th>
-        <th data-field="PhoneNum">PhoneNum</th>
+      <th data-field="state" data-checkbox="true"></th>
+      <th data-field="id"></th>
+      <th data-field="Name">Name</th>
+      <th data-field="Email">Email</th>
+      <th data-field="PhoneNum">PhoneNum</th>
 
-        <th data-field="Location">Location</th>
+      <th data-field="Location">Location</th>
 
-        <th data-field="Picture" data-formatter="imageFormatter">Picture</th>
-        <th data-field="PricePerHour">PricePerHour</th>
+      <th data-field="Picture" data-formatter="imageFormatter">Picture</th>
+      <th data-field="PricePerHour">PricePerHour</th>
 
-        <th data-field="Technology">Technology</th>
-        <th data-field="Description" class="abbreviation">Description</th>
-        <th data-field="YearsOfExp">YearsOfExp</th>
-        <th data-field="NativeLang">NativeLang</th>
+      <th data-field="Technology">Technology</th>
+      <th data-field="Description" class="abbreviation">Description</th>
+      <th data-field="YearsOfExp">YearsOfExp</th>
+      <th data-field="NativeLang">NativeLang</th>
       </tr>
       </thead>
       </table>
 
       <div id="toolbar2">
-        <div class="container" style="position: relative; top: -250px; left:-28%">
-          Start Date: <input id="startDate" width="170" /> End Date: <input id="endDate" width="170" />
-          <br>
-        <button id="hire" class="btn btn-dark" href="javascript:void(0)">
-          <i class="fa fa-handshake-o fa-lg" aria-hidden="true"></i> Hire
-        </button>
-        
-        
-       
+      <div class="container" style="position: relative; top: -250px; left:-28%">
+      Start Date: <input id="startDate" width="170" /> End Date: <input id="endDate" width="170" />
+      <br>
+      <button id="hire" class="btn btn-dark" href="javascript:void(0)">
+      <i class="fa fa-handshake-o fa-lg" aria-hidden="true"></i> Hire
+      </button> 
       </div>
       </div>
-    </div>
+      </div>
 
-    <!-- ASSIGN -->
-    <div class="tab-pane fade" id="nav-assigned" role="tabpanel" aria-labelledby="nav-assigned-tab">
+      <!-- ASSIGN -->
+      <div class="tab-pane fade" id="nav-assigned" role="tabpanel" aria-labelledby="nav-assigned-tab">
       
 
       <table id="table3"
@@ -154,21 +256,21 @@
       data-height="400" data-show-columns="true"
       data-icons="icons"
       class="table table-hover table-borderless"> 
-        <thead class="thead-dark">
-          <tr>
-            <th data-field="recordId" >Record ID</th>
-            <th data-field="developerId">Developer ID</th>
-            <th data-field="Name">Developer's Name</th>
-            <th data-field="startDate">Start Date</th>
-            <th data-field="endDate">End Date</th>
+      <thead class="thead-dark">
+      <tr>
+      <th data-field="recordId" >Record ID</th>
+      <th data-field="developerId">Developer ID</th>
+      <th data-field="Name">Developer's Name</th>
+      <th data-field="startDate">Start Date</th>
+      <th data-field="endDate">End Date</th>
 
-          </tr>
+      </tr>
       </thead>
       </table>
-    </div>
-  </div>
-</div>
-<div class="footer fixed-bottom" style="margin: auto;width:57%;display: flex;justify-content: center;bottom:10;border-top:1px solid rgb(196, 196, 196); ">Demir Dazdarevic, 2022</div>   
+      </div>
+      </div>
+      </div>
+      <div class="footer fixed-bottom" style="margin: auto;width:57%;display: flex;justify-content: center;bottom:10;border-top:1px solid rgb(196, 196, 196); ">Demir Dazdarevic, 2022</div>   
 
 
 
@@ -200,16 +302,56 @@ var $table3 = $('#table3');
 var $remove = $('#hire');
 var $refresh = $('#refresh');
 var $hire = $('#hire');
+var $createBtn = $('#createBtn');
+var $createForm = $('#createForm');
+
+
+
+// PREVENT CLOSING FORM IF THERE ARE ERRORS.
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
 
 $(document).ready(function() {
+
   $(".table2").attr("data-url","http://localhost/PrimeHiring/getAvailable.php?start=%27"+ $('#startDate').val() +"%27");
   $table.bootstrapTable('refresh');
-  $refresh.click(function () {
-      $table.bootstrapTable('refresh');
-      $table1.bootstrapTable('refresh');
-      $table3.bootstrapTable('refresh');
-    })
-});
+
+  //create form submission
+  $("#createBtn").on("click", function (e) {
+        var form = $("#createForm")[0];
+        var isValid = form.checkValidity();
+        if (!isValid) {
+           
+        }else {
+          //only post data if is valid 
+          $.post("http://localhost/PrimeHiring/createDeveloper.php", 
+           $("#createForm").serialize()).done(function( data )
+           {
+            alert( "Response: "+data );
+           });
+        }
+        form.classList.add('was-validated');   
+    });
+  
+ });
+   
+
 
 
 
@@ -225,7 +367,7 @@ window.operateEvents = {
     'click .remove': function (e, value, row, index) {
       //ajax request to delete in db
       $.get( "http://localhost/PrimeHiring/deleteDeveloper.php?id="+row['id'] , function( data ) {
-        alert( "Deleted."+data );
+        alert( "Deleted developer.");
         }); 
       $table1.bootstrapTable('remove', {
         field: '$index',
@@ -234,14 +376,13 @@ window.operateEvents = {
     }
   }
 
+  //disable hire btn if none selected
   $table.on('check.bs.table uncheck.bs.table ' +
       'check-all.bs.table uncheck-all.bs.table',
     function () {
       $hire.prop('disabled', !$table.bootstrapTable('getSelections').length);
-
-      // save your data, here just save the current page
       selections = getIdSelections();
-      // push or splice the selections if you want to save all data selections
+      
     })
 
   function getIdSelections() {
@@ -249,6 +390,8 @@ window.operateEvents = {
       return row.id;
     })
   }
+
+  
 
   $hire.click(function () {
     //hire

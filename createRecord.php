@@ -9,18 +9,13 @@ if(isset($postdata) && !empty($postdata))
 {
  
   $request = json_decode($postdata);
-  /*
-  $developerId = $request->developerId;
-  $startDate = $request->startDate;
-  $endDate = $request->endDate; */
-   $developerId = $_POST['developerId'];
+  
+  $developerId = $_POST['developerId'];
   $startDate = $_POST['startDate'];
   $endDate = $_POST['endDate'];
   
   
-  /*$developerId = $request['developerId'];
-  $startDate = $request['startDate'];
-  $endDate = $request['endDate']; */
+ 
  
 
   $upit = "INSERT INTO hiring_records (recordId, developerId, startDate, endDate) 
@@ -29,9 +24,6 @@ if(isset($postdata) && !empty($postdata))
 
   if($rez) {
     http_response_code(201);
-    /*$developer = [
-      'recordId' => mysqli_insert_id($konekcija)
-      ];*/
     echo json_encode($rez);
   }
   else {

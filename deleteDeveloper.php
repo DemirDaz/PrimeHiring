@@ -2,19 +2,20 @@
 
 require 'dbconnect.php';
 
-$id = ($_GET['id'] !== null && (int)$_GET['id'] > 0)? mysqli_real_escape_string($conn, (int)$_GET['id']) : false;
+$id = $_GET['id'];
+print_r($id);
 
 if(!$id)
 {
   return http_response_code(400);
 }
 
-$sql = "DELETE FROM developers WHERE `id`=$id ";
+$sql = "DELETE FROM developers WHERE id=$id";
 
-if(mysqli_query($conn, $sql))
+if(mysqli_query($konekcija, $sql))
 {
   http_response_code(204);
-  echo json_encode("Uspešno obrisan!");
+  echo ("Succesfully deleted developer!");
 }
 else
 {
