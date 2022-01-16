@@ -101,12 +101,12 @@
       data-toggle="table"
       data-show-toggle="true"
       data-click-to-select="true"
-      data-multiple-select-row="true"
+      
       data-show-refresh="true"
       data-url=""
       data-height="400" data-show-columns="true"
       data-icons="icons"
-      class="table table2 table-hover table-borderless">
+      class="table table-hover table2 table-borderless">
       <thead class="thead-dark">
       <tr>
         <th data-field="state" data-checkbox="true"></th>
@@ -131,7 +131,7 @@
         <div class="container" style="position: relative; top: -250px; left:-28%">
           Start Date: <input id="startDate" width="170" /> End Date: <input id="endDate" width="170" />
           <br>
-        <button id="hire" class="btn btn-dark" >
+        <button id="hire" class="btn btn-dark" href="javascript:void(0)">
           <i class="fa fa-handshake-o fa-lg" aria-hidden="true"></i> Hire
         </button>
         
@@ -147,6 +147,7 @@
 
       <table id="table3"
       data-toggle="table"
+      
       data-show-toggle="true"
       data-show-refresh="true"
       data-url="http://localhost/PrimeHiring/getRecords.php"
@@ -198,6 +199,7 @@ var $table = $('#table2');
 var $table3 = $('#table3');
 var $remove = $('#hire');
 var $refresh = $('#refresh');
+var $hire = $('#hire');
 
 $(document).ready(function() {
   $(".table2").attr("data-url","http://localhost/PrimeHiring/getAvailable.php?start=%27"+ $('#startDate').val() +"%27");
@@ -231,6 +233,67 @@ window.operateEvents = {
       })
     }
   }
+
+  $table.on('check.bs.table uncheck.bs.table ' +
+      'check-all.bs.table uncheck-all.bs.table',
+    function () {
+      $hire.prop('disabled', !$table.bootstrapTable('getSelections').length);
+
+      // save your data, here just save the current page
+      selections = getIdSelections();
+      // push or splice the selections if you want to save all data selections
+    })
+
+  function getIdSelections() {
+    return $.map($table.bootstrapTable('getSelections'), function (row) {
+      return row.id;
+    })
+  }
+
+  $hire.click(function () {
+    //hire
+      var ids = getIdSelections();
+      var i =0;
+      
+      for(i=0; i< ids.length;i++) {
+        
+        //alert(ids.length + ids[0]);
+        //tuzan je bug sa .post
+
+        
+        var myJSON = '{ "developerId": "'+ids[i]+'", "startDate": "'+$('#startDate').val()+'", "endDate": "'+$('#endDate').val()+'" }';
+        
+        //var myObject = JSON.parse(myJSON);
+
+       
+       var myString = JSON.stringify(myJSON);
+      //  alert(myString);
+
+        var param1 = ids[i];
+        var param2 = $('#startDate').val();
+        var param3 = $('#endDate').val();
+        jQuery.ajax({
+                url: 'http://localhost/PrimeHiring/createRecord.php',
+                method: 'POST',
+                data: { "developerId": param1, "startDate": "'"+param2.toString()+"'", "endDate": "'"+param3.toString()+"'" },
+                success: function (data) {
+                    alert(data);
+                },
+                error: function(xhr, desc, err) {
+                    console.log(xhr);
+                    console.log("Details0: " + desc + "\nError:" + err);
+                },
+            }); 
+
+
+      //  var posting = $.post( "http://localhost/PrimeHiring/createRecord.php", { developerId: ids[i], startDate: $('#startDate').val(), endDate: $('#endDate').val() });
+        
+      
+        
+      }
+      
+      $hire.prop('disabled', true);
+    })
 
  var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
   $('#startDate').datepicker({
